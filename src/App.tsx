@@ -12,10 +12,12 @@ const App: React.FC = () => {
     try {
       const savedColumns = localStorage.getItem('logViewerVisibleColumns');
       const savedSeverities = localStorage.getItem('logViewerActiveSeverities');
-      
+
       return {
         columns: savedColumns ? JSON.parse(savedColumns) : ['timestamp', 'severity', 'body'],
-        severities: savedSeverities ? JSON.parse(savedSeverities) : ['INFO', 'DEBUG', 'WARN', 'ERROR'],
+        severities: savedSeverities
+          ? JSON.parse(savedSeverities)
+          : ['INFO', 'DEBUG', 'WARN', 'ERROR'],
       };
     } catch (error) {
       console.error('Failed to load saved preferences:', error);
@@ -27,7 +29,7 @@ const App: React.FC = () => {
   };
 
   const { columns: savedColumns, severities: savedSeverities } = loadSavedPreferences();
-  
+
   // State
   const { logs, isLoading } = useLogs();
   const [activeSeverities, setActiveSeverities] = useState<string[]>(savedSeverities);
@@ -42,12 +44,7 @@ const App: React.FC = () => {
   }, [activeSeverities, searchTerm]);
 
   // Use optimized filtering hook
-  const { 
-    paginatedLogs, 
-    totalPages, 
-    isFiltering,
-    severityCounts 
-  } = useFilteredLogs({
+  const { paginatedLogs, totalPages, isFiltering, severityCounts } = useFilteredLogs({
     logs,
     activeSeverities,
     searchTerm,
@@ -87,14 +84,14 @@ const App: React.FC = () => {
           <SearchBar onSearch={handleSearch} />
         </div>
         <div className="dashboard-layout">
-          <FilterSidebar 
-            activeSeverities={activeSeverities} 
+          <FilterSidebar
+            activeSeverities={activeSeverities}
             onSeverityChange={handleSeverityChange}
             counts={severityCounts}
           />
           <div className="main-content">
-            <LogTable 
-              logs={paginatedLogs} 
+            <LogTable
+              logs={paginatedLogs}
               visibleColumns={visibleColumns}
               onColumnToggle={handleColumnToggle}
               onPageChange={handlePageChange}

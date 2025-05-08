@@ -44,7 +44,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   // Trigger search with debounced term
   useEffect(() => {
     if (debouncedTerm !== searchTerm) return;
-    
+
     onSearch(debouncedTerm);
     setIsSearching(false);
   }, [debouncedTerm, onSearch]);

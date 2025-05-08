@@ -30,20 +30,20 @@ const ColumnCustomizer: React.FC<ColumnCustomizerProps> = ({
   // Handle column toggle
   const handleColumnToggle = (column: string) => {
     let newVisibleColumns: string[];
-    
+
     if (visibleColumns.includes(column)) {
       // Don't allow deselecting the last column
       if (visibleColumns.length === 1) {
         return;
       }
-      newVisibleColumns = visibleColumns.filter(c => c !== column);
+      newVisibleColumns = visibleColumns.filter((c) => c !== column);
     } else {
       newVisibleColumns = [...visibleColumns, column];
     }
-    
+
     // Call the parent handler
     onColumnToggle(newVisibleColumns);
-    
+
     // Save to localStorage
     try {
       localStorage.setItem('logViewerVisibleColumns', JSON.stringify(newVisibleColumns));
@@ -55,10 +55,7 @@ const ColumnCustomizer: React.FC<ColumnCustomizerProps> = ({
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current && 
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -79,14 +76,12 @@ const ColumnCustomizer: React.FC<ColumnCustomizerProps> = ({
       >
         Customize
       </button>
-      
+
       {isOpen && (
         <div className="column-dropdown">
-          <div className="column-dropdown-header">
-            Toggle Columns
-          </div>
+          <div className="column-dropdown-header">Toggle Columns</div>
           <div className="column-dropdown-content">
-            {columns.map(column => (
+            {columns.map((column) => (
               <label key={column} className="column-checkbox">
                 <input
                   type="checkbox"

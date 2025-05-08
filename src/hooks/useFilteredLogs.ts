@@ -49,21 +49,25 @@ export const useFilteredLogs = ({
   // Calculate severity counts for all logs
   const severityCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    
+
     logs.forEach((log) => {
       counts[log.severity] = (counts[log.severity] || 0) + 1;
     });
-    
+
     return counts;
   }, [logs]);
 
   // Memoized filtering function
-  const filterLog = useCallback((log: LogEntry): boolean => {
-    const matchesSeverity = activeSeverities.includes(log.severity);
-    const matchesSearch = debouncedSearchTerm === '' || 
-      log.body.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
-    return matchesSeverity && matchesSearch;
-  }, [activeSeverities, debouncedSearchTerm]);
+  const filterLog = useCallback(
+    (log: LogEntry): boolean => {
+      const matchesSeverity = activeSeverities.includes(log.severity);
+      const matchesSearch =
+        debouncedSearchTerm === '' ||
+        log.body.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+      return matchesSeverity && matchesSearch;
+    },
+    [activeSeverities, debouncedSearchTerm]
+  );
 
   // Memoized filtered logs
   const filteredLogs = useMemo(() => {
