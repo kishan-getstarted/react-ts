@@ -4,17 +4,19 @@ import { ParsedLogBody } from '../types/log';
 // Format a Unix timestamp to a human-readable date/time
 export const formatTimestamp = (timestamp: string): string => {
   const date = new Date(parseInt(timestamp));
-  
+
   // Format: YYYY-MM-DD HH:MM:SS
-  return date.toLocaleString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false,
-  }).replace(',', '');
+  return date
+    .toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    })
+    .replace(',', '');
 };
 
 // Parse JSON string from log body
@@ -68,4 +70,3 @@ export const formatJson = (jsonString: string): string => {
     return jsonString;
   }
 };
-
