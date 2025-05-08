@@ -1,0 +1,126 @@
+.filter-sidebar {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  width: 250px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-md);
+  transition: width var(--transition-normal), min-width var(--transition-normal);
+  
+  &.collapsed {
+    width: 50px;
+    min-width: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: 100%;
+    
+    &.collapsed {
+      width: 100%;
+      min-width: 100%;
+      max-height: 40px;
+    }
+  }
+}
+
+.filter-sidebar-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  h3 {
+    margin: 0;
+    font-size: var(--font-size-md);
+  }
+}
+
+.collapse-button {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  padding: 0;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  
+  &:hover {
+    color: var(--color-text);
+  }
+}
+
+.filter-section {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  
+  h4 {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.toggle-all-button {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  padding: 0;
+  font-size: var(--font-size-xs);
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.severity-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.severity-filter {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  
+  input {
+    margin-right: var(--spacing-sm);
+    width: auto;
+  }
+  
+  .severity-name {
+    font-weight: 600;
+    flex: 1;
+  }
+  
+  .severity-count {
+    color: var(--color-text-light);
+    font-size: var(--font-size-xs);
+    background-color: var(--color-background);
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 30px;
+    text-align: center;
+  }
+}
+
+.filter-sidebar-footer {
+  padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: auto;
+}
