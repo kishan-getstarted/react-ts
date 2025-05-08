@@ -8,5 +8,5 @@ export interface LogEntry {
 
 export interface ParsedLogBody {
   message: string;
-  [key: string]: any;
+  [key: string]: string | number | boolean | object | null | undefined;
 }

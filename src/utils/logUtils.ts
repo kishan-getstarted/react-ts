@@ -1,4 +1,3 @@
-import React from 'react';
 import { ParsedLogBody } from '../types/log';
 
 // Format a Unix timestamp to a human-readable date/time

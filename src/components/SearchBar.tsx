@@ -47,7 +47,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
     onSearch(debouncedTerm);
     setIsSearching(false);
-  }, [debouncedTerm, onSearch]);
+  }, [debouncedTerm, onSearch, searchTerm]);
 
   return (
     <div className="search-bar">
